@@ -1,0 +1,44 @@
+# Python dependencies
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+xgboost>=1.7.0
+lightgbm>=3.3.0
+shap>=0.42.0
+
+# Data processing
+geopandas>=0.13.0
+rasterio>=1.3.0
+xarray>=2023.1.0
+netcdf4>=1.6.0
+
+# API and web
+fastapi>=0.100.0
+uvicorn>=0.23.0
+streamlit>=1.25.0
+pydantic>=2.0.0
+
+# Data sources
+earthengine-api>=0.1.360
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+biopython>=1.81
+
+# ML and visualization
+mlflow>=2.5.0
+plotly>=5.15.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+folium>=0.14.0
+
+# Testing and development
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.7.0
+flake8>=6.0.0
+
+# Environment and utilities
+python-dotenv>=1.0.0
+click>=8.1.0
+tqdm>=4.65.0
+pyarrow>=12.0.0
