@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # Main API service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - API_SECRET_KEY=development-key-change-in-production
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Streamlit dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    command: ["streamlit", "run", "src/dashboard/app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+    environment:
+      - API_BASE_URL=http://api:8000
+    depends_on:
+      - api
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  # Jupyter notebook server (development)
+  notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    command: ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
+    volumes:
+      - ./notebooks:/app/notebooks
+      - ./data:/app/data
+      - ./src:/app/src
+    profiles:
+      - development
+    restart: unless-stopped
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    profiles:
+      - production
+    restart: unless-stopped
+
+  # PostgreSQL database (optional)
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=mtri
+      - POSTGRES_USER=mtri
+      - POSTGRES_PASSWORD=mtri_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    profiles:
+      - production
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  postgres_data:
+
+networks:
+  default:
+    name: mtri-network
