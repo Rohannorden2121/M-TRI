@@ -1,6 +1,6 @@
 # GitHub Repository Setup Guide
 
-## 🚀 Quick Setup Instructions
+## Quick Setup Instructions
 
 ### 1. Create GitHub Repository
 1. Go to [https://github.com/new](https://github.com/new)
@@ -52,38 +52,38 @@ Add these topics to help with discoverability:
 ### Branch Protection (Recommended)
 1. Go to Settings → Branches
 2. Add protection rule for `main` branch:
-   - ✅ Require pull request reviews
-   - ✅ Require status checks to pass
-   - ✅ Include administrators
+   - Require pull request reviews
+   - Require status checks to pass
+   - Include administrators
 
 ### Repository Security
 1. Go to Settings → Security & analysis
 2. Enable:
-   - ✅ Dependency graph
-   - ✅ Dependabot alerts
-   - ✅ Dependabot security updates
+   - Dependency graph
+   - Dependabot alerts
+   - Dependabot security updates
 
-## 🎯 What You'll Have on GitHub
+## What You'll Have on GitHub
 
 Your repository will include:
 
-### 📁 **Complete Project Structure**
+### **Complete Project Structure**
 ```
 m-tri/
-├── 📊 notebooks/00_eda.ipynb      # Comprehensive data analysis
-├── 🔄 src/ingestion/              # Multi-source data collection
-├── ⚙️ src/features/               # Feature engineering pipeline  
-├── 🤖 src/models/                 # ML training with spatial CV
-├── 🚀 src/api/                    # FastAPI backend service
-├── 📱 src/dashboard/              # Streamlit web interface
-├── 🧪 tests/                     # Comprehensive test suite
-├── 🐳 Dockerfile                 # Container deployment
-├── 📋 docker-compose.yml         # Multi-service orchestration
-├── 🔄 .github/workflows/ci.yml   # Automated CI/CD pipeline
-└── 📚 Complete documentation
+├── notebooks/00_eda.ipynb      # Comprehensive data analysis
+├── src/ingestion/              # Multi-source data collection
+├── src/features/               # Feature engineering pipeline  
+├── src/models/                 # ML training with spatial CV
+├── src/api/                    # FastAPI backend service
+├── src/dashboard/              # Streamlit web interface
+├── tests/                      # Comprehensive test suite
+├── Dockerfile                  # Container deployment
+├── docker-compose.yml          # Multi-service orchestration
+├── .github/workflows/ci.yml    # Automated CI/CD pipeline
+└── Complete documentation
 ```
 
-### 📈 **Impressive Git History**
+### **Impressive Git History**
 - **8 realistic commits** spanning June-August 2025
 - **Professional commit messages** following conventional format
 - **Logical development progression** from setup → features → deployment

@@ -147,7 +147,7 @@ jobs:
     
     - name: Deploy to staging
       run: |
-        echo "🚀 Deploying to staging environment..."
+        echo "Deploying to staging environment..."
         echo "Deployment would happen here (Heroku, AWS, etc.)"
         
   deploy-production:
@@ -160,5 +160,5 @@ jobs:
     
     - name: Deploy to production
       run: |
-        echo "🚀 Deploying to production environment..."
+        echo "Deploying to production environment..."
         echo "Production deployment would happen here"

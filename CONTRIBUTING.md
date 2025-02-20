@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to the Microbial Toxin-Risk Index (M-TRI) project! This document provides guidelines for contributing to the codebase.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -37,7 +37,7 @@ Thank you for your interest in contributing to the Microbial Toxin-Risk Index (M
    pytest tests/ -v
    ```
 
-## 🛠 Development Workflow
+## Development Workflow
 
 ### Branch Strategy
 
@@ -86,7 +86,7 @@ Thank you for your interest in contributing to the Microbial Toxin-Risk Index (M
    git push origin feature/your-feature-name
    ```
 
-## 📝 Code Style
+## Code Style
 
 ### Python Code Standards
 
@@ -176,7 +176,7 @@ Use conventional commits format:
 - `fix(ingestion): handle missing USGS data gracefully`
 - `docs(readme): update installation instructions`
 
-## 🧪 Testing Guidelines
+## Testing Guidelines
 
 ### Test Structure
 
@@ -233,7 +233,7 @@ class TestFeatureEngineer:
 - Include edge cases and boundary conditions
 - Mock external API calls and file I/O
 
-## 📚 Documentation
+## Documentation
 
 ### Code Documentation
 
@@ -249,7 +249,7 @@ class TestFeatureEngineer:
 - Add API documentation for new endpoints
 - Include configuration documentation
 
-## 🐛 Bug Reports
+## Bug Reports
 
 ### Before Submitting
 
@@ -283,7 +283,7 @@ What actually happens
 Any other relevant information
 ```
 
-## 💡 Feature Requests
+## Feature Requests
 
 ### Feature Request Template
 
@@ -304,7 +304,7 @@ Other solutions you've considered
 Any other relevant information
 ```
 
-## 🔍 Code Review Process
+## Code Review Process
 
 ### Review Criteria
 
@@ -324,7 +324,7 @@ Any other relevant information
 - [ ] Performance impact is acceptable
 - [ ] Security implications considered
 
-## 🚢 Release Process
+## Release Process
 
 ### Version Numbers
 
@@ -343,7 +343,7 @@ Follow semantic versioning (SemVer):
 6. Deploy to production
 7. Announce release
 
-## 🤝 Community Guidelines
+## Community Guidelines
 
 ### Code of Conduct
 
@@ -358,7 +358,7 @@ Follow semantic versioning (SemVer):
 - **GitHub Discussions**: General questions and discussions
 - **Email**: Direct contact for security issues
 
-## 📞 Getting Help
+## Getting Help
 
 ### Resources
 
@@ -376,4 +376,4 @@ Follow semantic versioning (SemVer):
 
 ---
 
-Thank you for contributing to M-TRI! Your efforts help protect public health and environmental resources. 🌊💚
+Thank you for contributing to M-TRI! Your efforts help protect public health and environmental resources.

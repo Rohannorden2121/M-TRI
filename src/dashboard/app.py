@@ -19,13 +19,11 @@ import logging
 
 # Configure page
 st.set_page_config(
-    page_title="M-TRI Dashboard", 
-    page_icon="🌊",
+    page_title="M-TRI Dashboard",
+    page_icon=":ocean:",
     layout="wide",
     initial_sidebar_state="expanded"
-)
-
-# Custom CSS
+)# Custom CSS
 st.markdown("""
 <style>
 .main-header {
@@ -276,7 +274,8 @@ def main():
     """Main dashboard application."""
     
     # Header
-    st.markdown('<h1 class="main-header">🌊 M-TRI Dashboard</h1>', unsafe_allow_html=True)
+    # Main title with custom styling
+    st.markdown('<h1 class="main-header">M-TRI Dashboard</h1>', unsafe_allow_html=True)
     st.markdown("**Microbial Toxin-Risk Index** - Real-time harmful algal bloom prediction for New Jersey waterbodies")
     
     # Sidebar
@@ -303,7 +302,7 @@ def main():
         rankings_data = get_pond_rankings(selected_date)
         
     # Main content tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["🗺️ Map Overview", "📊 Rankings", "🔍 Pond Detail", "📈 Analytics"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Map Overview", "Rankings", "Pond Detail", "Analytics"])
     
     with tab1:
         st.header("Pond Risk Overview Map")
@@ -430,7 +429,7 @@ def main():
                         if prediction.get('evidence_links'):
                             st.subheader("Supporting Evidence")
                             for link in prediction['evidence_links']:
-                                st.info(f"📊 {link['description']}")
+                                st.info(f"Info: {link['description']}")
                                 
                     else:
                         st.warning(f"Could not get prediction for pond {selected_pond}")

@@ -6,7 +6,7 @@
 
 A comprehensive machine learning system for predicting harmful algal blooms (HABs) in New Jersey waterbodies using satellite imagery, water chemistry data, and genomic evidence.
 
-## 🎯 Project Overview
+## Project Overview
 
 The Microbial Toxin-Risk Index (M-TRI) combines multiple environmental data sources to predict the likelihood of toxin-producing algal blooms in freshwater ponds and lakes. This early warning system helps environmental managers prioritize monitoring efforts and protect public health.
 
@@ -19,7 +19,7 @@ The Microbial Toxin-Risk Index (M-TRI) combines multiple environmental data sour
 - **Weak-Label Learning**: Handles uncertain labels from field observations and citizen science
 - **Production Ready**: Dockerized deployment with CI/CD pipeline
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -59,7 +59,7 @@ The Microbial Toxin-Risk Index (M-TRI) combines multiple environmental data sour
    - Dashboard: http://localhost:8501
    - Jupyter (dev): http://localhost:8888
 
-## 📊 Data Sources
+## Data Sources
 
 ### Primary Sources
 - **Water Quality Portal (WQP)**: Chemical parameters, nutrient levels
@@ -73,7 +73,7 @@ The repository includes synthetic sample data for testing and development:
 - `data/sample/satellite_data.csv`: Satellite-derived indices
 - `data/sample/targets.csv`: HAB occurrence labels
 
-## 🛠 Architecture
+## Architecture
 
 ```
 ├── data/                    # Data storage
@@ -93,7 +93,7 @@ The repository includes synthetic sample data for testing and development:
 └── docker/              # Docker configuration
 ```
 
-## 📈 Usage
+## Usage
 
 ### 1. Data Ingestion
 
@@ -171,7 +171,7 @@ Launch the interactive dashboard:
 streamlit run src/dashboard/app.py
 ```
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 
@@ -186,7 +186,7 @@ pytest tests/integration/ -v
 pytest tests/ --cov=src --cov-report=html
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -233,7 +233,7 @@ features:
   spatial_buffer: 1000  # meters
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 ### Endpoints
 
@@ -299,7 +299,7 @@ Get ranked list of highest-risk waterbodies.
 }
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Deployment
 
@@ -327,7 +327,7 @@ Get ranked list of highest-risk waterbodies.
 - **Database**: PostgreSQL for historical data storage
 - **Monitoring**: Prometheus + Grafana recommended
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -355,11 +355,11 @@ black src/ tests/
 mypy src/
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Water Quality Portal** for providing comprehensive water chemistry data
 - **USGS** for hydrological monitoring data
@@ -367,13 +367,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **NCBI** for genomic sequence databases
 - New Jersey Department of Environmental Protection for validation data
 
-## 📞 Contact
+## Contact
 
 - **Principal Investigator**: [Your Name](mailto:your.email@university.edu)
 - **Project Repository**: https://github.com/username/m-tri
 - **Documentation**: https://mtri-docs.readthedocs.io
 
-## 🔗 Related Work
+## Related Work
 
 - Smith et al. (2023). "Machine Learning for HAB Prediction". *Environmental Science & Technology*
 - Johnson, A. (2024). "Satellite-Based Water Quality Monitoring". *Remote Sensing of Environment*
@@ -381,7 +381,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ for environmental protection and public health**
+**Made with dedication for environmental protection and public health**
 
 ## What This Does
 
