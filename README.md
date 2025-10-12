@@ -1,24 +1,17 @@
 # M-TRI: Microbial Toxin-Risk Index
 
-[![CI/CD](https://github.com/username/m-tri/actions/workflows/ci.yml/badge.svg)](https://github.com/username/m-tri/actions/workflows/ci.yml)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-A comprehensive machine learning system for predicting harmful algal blooms (HABs) in New Jersey waterbodies using satellite imagery, water chemistry data, and genomic evidence.
+M-TRI is a pipeline that predicts harmful algal blooms in New Jersey waterbodies. It uses satellite imagery, water chemistry data, and genomic evidence, to generate real-time toxin risk assessments for environmental managers and public health officials. 
 
 ## Project Overview
 
-The Microbial Toxin-Risk Index (M-TRI) combines multiple environmental data sources to predict the likelihood of toxin-producing algal blooms in freshwater ponds and lakes. This early warning system helps environmental managers prioritize monitoring efforts and protect public health.
+The Microbial Toxin-Risk Index combines multiple environmental data sources to predict the likelihood of toxin-producing algal blooms in NJ freshwater ponds and lakes. This early warning system helps environmental managers for montoring and for general public safety as well.
 
 ### Key Features
 
-- **Multi-source Data Integration**: Combines water chemistry (WQP), hydrology (USGS), satellite imagery (Google Earth Engine), and genomic data (NCBI SRA)
-- **Spatial Cross-Validation**: Prevents data leakage using geographic clustering for train/test splits
-- **Real-time Predictions**: RESTful API for on-demand toxin risk assessment
-- **Interactive Dashboard**: Web-based interface for data exploration and risk visualization
-- **Weak-Label Learning**: Handles uncertain labels from field observations and citizen science
-- **Production Ready**: Dockerized deployment with CI/CD pipeline
-
+- **Multi-source Data Integration**: Combines water chemistry, hydrology, satellite imagery (Google Earth Engine), and genomic data (NCBI SRA)
+- **Spatial Cross-Validation**: No data leakage using geographic clustering for train/test splits
+- **Interactive Dashboard**: Web-based interface for data exploration + risk visualization
+- 
 ## Quick Start
 
 ### Prerequisites
@@ -62,13 +55,13 @@ The Microbial Toxin-Risk Index (M-TRI) combines multiple environmental data sour
 ## Data Sources
 
 ### Primary Sources
-- **Water Quality Portal (WQP)**: Chemical parameters, nutrient levels
-- **USGS National Water Information System**: Stream flow, water levels
+- **Water Quality Portal (WQP)**: Chemical parameters & nutrient levels
+- **USGS National Water Information System**: Stream flow & water levels
 - **Google Earth Engine**: Landsat/Sentinel satellite imagery
-- **NCBI SRA**: Metagenomic sequencing data (future enhancement)
+- **NCBI SRA**: Metagenomic sequencing data
 
 ### Sample Data
-The repository includes synthetic sample data for testing and development:
+The repository has synthetic sample data for testing and development:
 - `data/sample/water_quality.csv`: Water chemistry measurements
 - `data/sample/satellite_data.csv`: Satellite-derived indices
 - `data/sample/targets.csv`: HAB occurrence labels
@@ -95,7 +88,7 @@ The repository includes synthetic sample data for testing and development:
 
 ## Usage
 
-### 1. Data Ingestion
+### 1. Data
 
 Collect data from multiple sources:
 
@@ -299,8 +292,6 @@ Get ranked list of highest-risk waterbodies.
 }
 ```
 
-## Deployment
-
 ### Production Deployment
 
 1. **Build and push Docker image**
@@ -320,23 +311,12 @@ Get ranked list of highest-risk waterbodies.
    kubectl apply -f k8s/
    ```
 
-### Scaling Considerations
+### Scaling Considerations (COPILOT RECOMMENDATIONS: USE WITH ENSURING WORKS)
 
 - **Horizontal scaling**: API supports stateless scaling
 - **Caching**: Redis for frequent predictions
 - **Database**: PostgreSQL for historical data storage
 - **Monitoring**: Prometheus + Grafana recommended
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass (`pytest`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
 
 ### Development Setup
 
@@ -359,20 +339,6 @@ mypy src/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- **Water Quality Portal** for providing comprehensive water chemistry data
-- **USGS** for hydrological monitoring data
-- **Google Earth Engine** for satellite imagery access
-- **NCBI** for genomic sequence databases
-- New Jersey Department of Environmental Protection for validation data
-
-## Contact
-
-- **Principal Investigator**: [Your Name](mailto:your.email@university.edu)
-- **Project Repository**: https://github.com/username/m-tri
-- **Documentation**: https://mtri-docs.readthedocs.io
-
 ## Related Work
 
 - Smith et al. (2023). "Machine Learning for HAB Prediction". *Environmental Science & Technology*
@@ -381,18 +347,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with dedication for environmental protection and public health**
-
 ## What This Does
 
 M-TRI combines multiple data sources to predict toxin risk in ponds:
 
-- **Satellite data**: Detects algal blooms using color and vegetation indices
-- **Water chemistry**: Tracks nutrient levels that fuel harmful algae
+- **Satellite data**: Detects algal blooms using color and vegetation
+- **Water chemistry**: Tracks nutrient levels fueling harmful algae
 - **Genomic data**: Identifies toxin-producing genes in water samples
 - **Environmental context**: Considers land use, climate, and hydrology
 
-The system outputs probability scores for each pond and ranks them by priority for testing.
+The system outputs probability scores for each waterbody and ranks them by priority for testing.
 
 ## Project Structure
 
@@ -456,14 +420,6 @@ Build Docker image:
 ```bash
 docker build -t mtri .
 ```
-
-## Contributing
-
-This project follows standard practices:
-- Code style: black, flake8
-- Tests: pytest with >80% coverage
-- Documentation: docstrings and type hints
-- Git: short, descriptive commit messages
 
 ## License
 
