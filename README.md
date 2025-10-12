@@ -6,6 +6,56 @@ M-TRI is a pipeline that predicts harmful algal blooms in New Jersey waterbodies
 
 The Microbial Toxin-Risk Index combines multiple environmental data sources to predict the likelihood of toxin-producing algal blooms in NJ freshwater ponds and lakes. This early warning system helps environmental managers for montoring and for general public safety as well.
 
+## More Detailed Project Overview
+
+M-TRI (Microbial Toxin-Risk Index) is a pipeline that predicts harmful algal blooms in New
+Jersey waterbodies. It uses satellite imagery, water chemistry data, and genomic evidence, to generate real-time toxin risk assessments for environmental managers and public health officials. 
+
+Feature engineering: Creates engineered features including temporal aggregations, spatial context, remote sensing indices, and genomic markers
+
+Machine Learning System
+Spatial cross-validation: Prevents data leakage by splitting training/test sets by watershed boundaries
+
+Baseline models: Logistic regression and Random Forest with hyperparameter tuning
+
+Model explainability: SHAP values for feature importance and decision transparency
+
+Containerization: Docker deployment with health checks and monitoring
+
+
+Comprehensive testing: 95+ test cases with >80% code coverage
+
+/predict endpoint: Returns toxin probability, risk level, and SHAP explanations for any pond/date
+/rankings endpoint: Generates statewide alert lists for monitoring
+
+Satellite imagery: Processes Landsat/Sentinel data for vegetation, water color, and bloom detection
+Water chemistry: Uses nutrient levels, pH, temperature, and chlorophyll measurements
+Genomic evidence: Searches metagenomic databases for toxin biosynthesis genes (mcy, sxt, cyl)
+Uses land use, climate, hydrology, and accessibility factors
+
+
+Exploratory Data Analysis (notebooks/00_eda.ipynb)
+Spatial and temporal data availability assessment
+QC
+HAB occurrence frequency and seasonal patterns
+Feature Engineering
+Spatial features: Distance calculations, watershed aggregations, and land use percentages
+Remote sensing: NDVI, chlorophyll/water quality indices from satellite data
+Genomic features: Boolean gene detection and relative abundance from metagenomic samples
+
+Baseline approach: (logistic regression)
+Advanced options: Tree-based ensembles (XGBoost/LightGBM)
+Cross-validation: 5-fold spatial blocking (5 spatial blocks for little bias) + to prevent overfitting
+Real-world Impact & Applications
+Public Health Protection
+Early warning system: Identifies high-risk ponds before confirmed toxin reports
+Limited testing resources on highest-probability locations
+Environmental Management
+Trend monitoring: Long-term changes in water quality/bloom frequency
+Links bloom events to upstream land use/nutrient inputs
+Watershed management+restoration efforts
+
+
 ### Key Features
 
 - **Multi-source Data Integration**: Combines water chemistry, hydrology, satellite imagery (Google Earth Engine), and genomic data (NCBI SRA)
