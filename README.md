@@ -61,7 +61,7 @@ Watershed management+restoration efforts
 - **Multi-source Data Integration**: Combines water chemistry, hydrology, satellite imagery (Google Earth Engine), and genomic data (NCBI SRA)
 - **Spatial Cross-Validation**: No data leakage using geographic clustering for train/test splits
 - **Interactive Dashboard**: Web-based interface for data exploration + risk visualization
-- 
+  
 ## Quick Start
 
 ### Prerequisites
