@@ -1,49 +1,54 @@
 # M-TRI: Microbial Toxin-Risk Index
 
-M-TRI is a pipeline that predicts harmful algal blooms in New Jersey waterbodies. It uses satellite imagery, water chemistry data, and genomic evidence, to generate real-time toxin risk assessments for environmental managers and public health officials. 
+M-TRI is a pipeline that predicts harmful algal blooms in New Jersey waterbodies. It uses satellite imagery, water chemistry data, and genomic evidence to give real-time toxin risk assessments for environmentalists (monitoring and general animal and public safety).
+
+## What This Does: Simple Overview
+
+M-TRI uses multiple data sources to predict toxin risk in ponds:
+
+- Finds algal blooms using color & vegetation
+- Tracks nutrient levels that fuels harmful algae
+- Finds toxin-producing genes in water samples
+- Considers land use, climate, and also hydrology
+
+The system outputs probability scores for each waterbody and ranks them by priority for testing.
 
 ## Project Overview
 
-The Microbial Toxin-Risk Index combines multiple environmental data sources to predict the likelihood of toxin-producing algal blooms in NJ freshwater ponds and lakes. This early warning system helps environmental managers for montoring and for general public safety as well.
+The Microbial Toxin-Risk Index uses multiple environmental data sources to predict the likelihood of toxin-producing algal blooms in NJ (freshwater) ponds and lakes.
 
-## More Detailed Project Overview
+Baseline models: Logistic regression and Random Forest
 
-M-TRI (Microbial Toxin-Risk Index) is a pipeline that predicts harmful algal blooms in New
-Jersey waterbodies. It uses satellite imagery, water chemistry data, and genomic evidence, to generate real-time toxin risk assessments for environmental managers and public health officials. 
+/predict endpoint: Gives toxin probability and SHAP explanations for any pond/date (also risk level)
+/rankings endpoint: Ranks for monitoring
 
-Baseline models: Logistic regression and Random Forest with tuning
-
-
-/predict endpoint: Returns toxin probability, risk level, and SHAP explanations for any pond/date
-/rankings endpoint: Generates statewide alert lists for monitoring
-
-Satellite imagery: Processes Landsat/Sentinel data for vegetation, water color, and bloom detection
-Water chemistry: Uses nutrient levels, pH, temperature, and chlorophyll measurements
-Genomic evidence: Searches metagenomic databases for toxin biosynthesis genes (mcy, sxt, cyl)
-Uses land use, climate, hydrology, and accessibility factors
+Satellite imagery: Landsat/Sentinel data for vegetation, water color, and bloom
+Water chemistry: Nutrient levels, pH, temperature, and chlorophyll measurements
+Genomic evidence: Looks through metagenomic databases for toxin biosynthesis genes (mcy, sxt, cyl)
+Also uses land use, climate, & hydrology
 
 Approach: (logistic regression)
-Advanced: Tree-based ensembles (XGBoost/LightGBM)
+Tree-based ensembles (XGBoost/LightGBM)
 Cross-validation: 5-fold spatial blocking (5 spatial blocks for little bias) + to prevent overfitting
-Real-world Impact & Applications
+
+Real-world Impact
 Public Health Protection
 Early warning system: Identifies high-risk ponds before confirmed toxin reports
-Limited testing resources on highest-probability locations
-Environmental Management
-Trend monitoring: Long-term changes in water quality/bloom frequency
-Links bloom events to upstream land use/nutrient inputs
-Watershed management+restoration efforts
+For limited testing resources
+
+Monitoring for trends: Long-term changes in water quality/bloom frequency
+Watershed management/restoration efforts
 
 
 ### Key Features
 
-- **Data Integration**: Combines water chemistry, hydrology, satellite imagery (Google Earth Engine), and genomic data (NCBI SRA)
-- **Cross-Validation**: No data leakage using geographic clustering for train/test splits
-- **Dashboard**: Web-based interface for data exploration
+- **Data**: Uses water chemistry, hydrology, satellite imagery (Google Earth Engine), and genomic data (NCBI SRA)
+- **Cross-Validation**: Geographic clustering for train/test splits
+- **Dashboard**: Interface for data exploration
   
 ## Quick Start
 
-### Prerequisites
+### Prereqs
 
 - Python 3.8+
 - Docker and Docker Compose (for containerized deployment)
@@ -83,19 +88,19 @@ Watershed management+restoration efforts
 
 ## Data Sources
 
-### Primary Sources
-- **Water Quality Portal (WQP)**: Chemical parameters & nutrient levels
-- **USGS National Water Information System**: Stream flow & water levels
+### Sources
+- **Water Quality Portal (WQP)**: Chemical and nutrient levels
+- **USGS National Water Information System**: Stream flow and water levels
 - **Google Earth Engine**: Landsat/Sentinel satellite imagery
 - **NCBI SRA**: Metagenomic sequencing data
 
 ### Sample Data
-The repository has synthetic sample data for testing and development:
-- `data/sample/water_quality.csv`: Water chemistry measurements
+Has sample data for testing and development:
+- `data/sample/water_quality.csv`: Water chemistry
 - `data/sample/satellite_data.csv`: Satellite-derived indices
-- `data/sample/targets.csv`: HAB occurrence labels
+- `data/sample/targets.csv`: HAB
 
-## Architecture
+## Format
 
 ```
 ├── data/                    # Data storage
@@ -115,8 +120,6 @@ The repository has synthetic sample data for testing and development:
 └── docker/              # Docker configuration
 ```
 
-## Usage
-
 ### 1. Data
 
 Collect data from multiple sources:
@@ -128,13 +131,13 @@ python -m src.ingestion.wqp_ingester --state NJ --start-date 2023-01-01
 # USGS hydrological data
 python -m src.ingestion.usgs_ingester --state NJ --parameters flow,temperature
 
-# Satellite imagery (requires GEE authentication)
+# Satellite imagery (requires GEE auth.)
 python -m src.ingestion.gee_ingester --region new_jersey --start-date 2023-01-01
 ```
 
 ### 2. Feature Engineering
 
-Transform raw data into model-ready features:
+Raw data into model-ready features:
 
 ```python
 from src.features.engineering import FeatureEngineer
@@ -149,7 +152,7 @@ features = engineer.create_features(
 
 ### 3. Model Training
 
-Train baseline models with spatial cross-validation:
+Training baseline models with spatial cross-validation:
 
 ```bash
 python src/models/train_baseline.py --config config/model_config.yaml
@@ -185,9 +188,9 @@ response = requests.post("http://localhost:8000/predict", json={
 print(response.json())
 ```
 
-### 5. Dashboard
+### 5. Interface
 
-Launch the interactive dashboard:
+Launch dashboard:
 
 ```bash
 streamlit run src/dashboard/app.py
@@ -195,20 +198,20 @@ streamlit run src/dashboard/app.py
 
 ## Testing
 
-Run the test suite:
+Run test suite:
 
 ```bash
-# Unit tests
+# Unit test
 pytest tests/ -v
 
-# Integration tests
+# Integration
 pytest tests/integration/ -v
 
-# Test coverage
+# Test
 pytest tests/ --cov=src --cov-report=html
 ```
 
-## Configuration
+## Config
 
 ### Environment Variables
 
@@ -233,7 +236,7 @@ LOG_LEVEL=INFO
 LOG_FILE=logs/mtri.log
 ```
 
-### Model Configuration
+### Model Config
 
 Edit `config/model_config.yaml`:
 
@@ -296,7 +299,7 @@ Predict toxin risk for a single waterbody.
 ```
 
 #### GET `/rankings`
-Get ranked list of highest-risk waterbodies.
+Get ranked list of highest-risk.
 
 **Parameters:**
 - `state`: State abbreviation (e.g., "NJ")
@@ -323,31 +326,24 @@ Get ranked list of highest-risk waterbodies.
 
 ### Production Deployment
 
-1. **Build and push Docker image**
+1. **Build+push Docker image**
    ```bash
    docker build -t mtri:latest .
    docker tag mtri:latest your-registry/mtri:latest
    docker push your-registry/mtri:latest
    ```
 
-2. **Deploy with Docker Compose**
+2. **Deploy w/ Docker Compose**
    ```bash
    docker-compose -f docker-compose.prod.yml up -d
    ```
 
-3. **Kubernetes deployment**
+3. **Kubernetes**
    ```bash
    kubectl apply -f k8s/
    ```
 
-### Scaling Considerations (COPILOT RECOMMENDATIONS: USE WITH ENSURING WORKS)
-
-- **Horizontal scaling**: API supports stateless scaling
-- **Caching**: Redis for frequent predictions
-- **Database**: PostgreSQL for historical data storage
-- **Monitoring**: Prometheus + Grafana recommended
-
-### Development Setup
+### Development
 
 ```bash
 # Install development dependencies
@@ -368,24 +364,13 @@ mypy src/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Related Work
+## Inspriration Work
 
 - Smith et al. (2023). "Machine Learning for HAB Prediction". *Environmental Science & Technology*
 - Johnson, A. (2024). "Satellite-Based Water Quality Monitoring". *Remote Sensing of Environment*
 - Brown, K. et al. (2023). "Spatial Cross-Validation in Environmental ML". *Nature Methods*
 
 ---
-
-## What This Does
-
-M-TRI combines multiple data sources to predict toxin risk in ponds:
-
-- Finds algal blooms using color and vegetation
-- Tracks nutrient levels fueling harmful algae
-- Finds toxin-producing genes in water samples
-- Considers land use, climate, and also hydrology
-
-The system outputs probability scores for each waterbody and ranks them by priority for testing.
 
 ## Project Structure
 
@@ -411,11 +396,11 @@ The system outputs probability scores for each waterbody and ranks them by prior
 
 ## Data Sources
 
-- **Water Quality Portal**: Nutrient measurements from EPA/USGS
-- **Satellite imagery**: Sentinel-2, Landsat via Google Earth Engine
-- **NCBI SRA**: Environmental DNA samples and toxin genes
-- **USGS NWIS**: Stream flow and hydrologic data
-- **Land cover**: NLCD, roads, agriculture from public datasets
+- **Water Quality Portal**: EPA/USGS
+- **Satellite imagery**: Sentinel-2 & Landsat (Google Earth Engine)
+- **NCBI SRA**: Environmental DNA samples & toxin genes
+- **USGS NWIS**: Stream flow+hydrologic data
+- **Land cover**: NLCD, roads, and agriculture from public datasets
 
 ## API Usage
 
@@ -424,17 +409,17 @@ Get toxin risk for a specific pond:
 curl "http://localhost:8000/predict?pond_id=NJ001&date=2024-07-15"
 ```
 
-Get top priority ponds statewide:
+Get top priority ponds for NJ:
 ```bash
 curl "http://localhost:8000/rankings?date=2024-07-15&top=20"
 ```
 
 ## Model Performance
 
-Current baseline achieves:
+Current baseline:
 - ROC-AUC: 0.78 on held-out test set
-- Precision@20: 0.45 (beating random baseline of 0.05)
-- Spatial cross-validation across watersheds prevents overfitting
+- Precision@20: 0.45 (better than random baseline of 0.05)
+- Spatial cross-validation prevents overfitting
 
 See `models/baseline_metrics.json` for detailed results.
 
@@ -453,3 +438,4 @@ docker build -t mtri .
 ## License
 
 MIT License - see LICENSE file for details.
+
